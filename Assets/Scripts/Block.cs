@@ -7,6 +7,7 @@ public class Block : MonoBehaviour
     [SerializeField] public AudioClip destroyedBlockSound;
     [SerializeField] public float soundVolume = 0.05f;
     [SerializeField] public GameObject destroyedBlockParticlesVFX;
+    [SerializeField] public GameObject[] items;
     [SerializeField] public int maxHits;
     [SerializeField] public Sprite[] damageSprites;
 
@@ -109,6 +110,15 @@ public class Block : MonoBehaviour
 
         // plays destroyed block sound SFX
         AudioSource.PlayClipAtPoint(destroyedBlockSound, _soundPosition, soundVolume);
+
+        int dropRate = Random.Range(0, 10);
+
+        // spawn item
+        if (dropRate <= 5)
+        {
+            int itemIndex = Random.Range(0, items.Length);
+            Instantiate(items[itemIndex], gameObject.transform.position, items[itemIndex].transform.rotation);
+        }
         Destroy(this.gameObject);
     }
 
