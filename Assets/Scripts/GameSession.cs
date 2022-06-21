@@ -59,6 +59,7 @@ public class GameSession : MonoBehaviour
      */
     void Update()
     {
+
         if(GameObject.Find("Paddle") != null)
         {
             _paddle = GameObject.Find("Paddle").GetComponent<Paddle>();
