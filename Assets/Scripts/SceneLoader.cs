@@ -9,7 +9,7 @@ public class SceneLoader : MonoBehaviour
     private int playedScene;
 
    // loads next scene based on the scene ordering defined on Unity > build settings
-   public void LoadNextScene()
+   public void LoadNextLevel()
    {
       int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         playedScene = PlayerPrefs.GetInt("playedScene", 1);

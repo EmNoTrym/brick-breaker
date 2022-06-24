@@ -38,9 +38,6 @@ public class GameSession : MonoBehaviour
         
         // first instance should be kept and do NOT destroy it on load
         _instance = this;
-
-        
-
         DontDestroyOnLoad(this.gameObject);
     }
     

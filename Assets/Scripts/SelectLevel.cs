@@ -24,19 +24,17 @@ public class SelectLevel : MonoBehaviour
 
     public void ChangeLevel()
     {
-        if(buttonText.text == "Tutorial")
+        int playedScene = PlayerPrefs.GetInt("playedScene", 1);
+        int pickedLevel = 1;
+        int.TryParse(buttonText.text, out pickedLevel);
+        if (playedScene >= pickedLevel)
         {
-            SceneManager.LoadScene("Level1");
+            PlayerPrefs.SetInt("PickedLevel", pickedLevel);
+            SceneManager.LoadScene("Test"); 
         }
         else
-        {
-            int playedScene = PlayerPrefs.GetInt("playedScene", 1);
-            Debug.Log(playedScene);
-            if (playedScene >= int.Parse(buttonText.text))
-                SceneManager.LoadScene("Level" + buttonText.text);
-            else
-                return;
-        }
-        
+            return;
+
+
     }
 }

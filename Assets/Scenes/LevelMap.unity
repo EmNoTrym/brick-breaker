@@ -1173,7 +1173,7 @@ MonoBehaviour:
   levelIcon: {fileID: 6049445564929170999, guid: 81d4b944117cfaf4ba163f510d14707d,
     type: 3}
   canvas: {fileID: 244283152}
-  numberOfLevels: 40
+  numberOfLevels: 10
   iconSpacing: {x: 100, y: 100}
 --- !u!1 &1697278297
 GameObject:

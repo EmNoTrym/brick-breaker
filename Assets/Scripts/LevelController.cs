@@ -3,45 +3,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelController : MonoBehaviour
-{
-    private readonly string GAME_OVER_SCENE_NAME = "Scenes/GameOver";
-    private readonly int NUMBER_OF_GAME_LEVELS = 3;
-    
-    // UI elements
-    [SerializeField] int blocksCounter;
-
-    // state
-    private SceneLoader _sceneLoader;
-    
-    private void Start()
+    public class LevelController : MonoBehaviour
     {
-        _sceneLoader = FindObjectOfType<SceneLoader>();
-    }
+        [SerializeField] private LoadCSV loadCSV;
 
-    public void IncrementBlocksCounter()
-    {
-        blocksCounter++;
-    }
-    
-    public void DecrementBlocksCounter()
-    {
-        blocksCounter--;
+        // UI elements
+        [SerializeField] int blocksCounter;
 
-        if (blocksCounter <= 0)
+        public void IncrementBlocksCounter()
         {
-            var gameSession = GameSession.Instance;
-            
-            // check for game over
-            if (gameSession.GameLevel >= NUMBER_OF_GAME_LEVELS)
-            {
-                _sceneLoader.LoadSceneByName(GAME_OVER_SCENE_NAME);
-            }
+            blocksCounter++;
+        }
 
-            // increases game level
-            gameSession.GameLevel++;
-            _sceneLoader.LoadNextScene();
+        public void DecrementBlocksCounter()
+        {
+            blocksCounter--;
+
+            if (blocksCounter <= 0)
+            {
+                loadCSV.level++;
+                GameObject.Find("Paddle").GetComponent<Paddle>().SetToOriginalPos();
+                GameObject.Find("Ball").GetComponent<Ball>().HasBallBeenShot = false;
+                GameObject.Find("GameSessionLoader").GetComponent<GameSessionLoader>().StartGameSession();
+                loadCSV.LoadNewCSV();
+            }
         }
     }
-    
-}
+
+

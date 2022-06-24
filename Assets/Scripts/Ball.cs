@@ -102,5 +102,4 @@ public class Ball : MonoBehaviour
         
         _rigidBody2D.velocity = new Vector2(correctVelocityX, correctVelocityY);
     }
-
 }

@@ -29,8 +29,7 @@ public class Paddle : MonoBehaviour
         //float startPosX = ConvertPixelToRelativePosition(screenWidthUnits / 2, Screen.width);
         //transform.position = GetUpdatedPaddlePosition(startPosX);
 
-        Vector3 startPos = new Vector2((minRelativePosX + maxRelativePosX) / 2, 1);
-        transform.position = startPos;
+        SetToOriginalPos();
     } 
 
     // Update is called once per frame
@@ -66,6 +65,12 @@ public class Paddle : MonoBehaviour
     { 
         var relativePosition = pixelPosition/screenWidth * screenWidthUnits;
         return relativePosition;
+    }
+
+    public void SetToOriginalPos()
+    {
+        Vector3 startPos = new Vector2((minRelativePosX + maxRelativePosX) / 2, 1);
+        transform.position = startPos;
     }
 
 }
